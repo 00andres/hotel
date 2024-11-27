@@ -1,0 +1,101 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Service {
+  id: Int!
+  nombre: String!
+  descripcion: String!
+  costoAdicional: Int!
+  disponible: Boolean!
+}
+
+type Reservation {
+  id: Int!
+  clientId: Float!
+  startDate: DateTime!
+  endDate: DateTime!
+  status: String!
+  habitation: Habitation!
+  service: Service
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Habitation {
+  id: Int!
+  numero: Float!
+  tipo: String!
+  precio: Int!
+  disponible: Boolean!
+}
+
+type Query {
+  getAllHabitaciones: [Habitation!]!
+  getHabitacion(id: Float!): Habitation!
+  getAllReservations: [Reservation!]!
+  getReservation(id: Float!): Reservation!
+  getAllServices: [Service!]!
+  getService(id: Float!): Service!
+}
+
+type Mutation {
+  createHabitacion(data: CreateHabitationDto!): Habitation!
+  updateHabitacion(id: Float!, data: UpdateHabitationDto!): Habitation!
+  deleteHabitacion(id: Float!): Boolean!
+  createReservation(data: CreateReservationDto!): Reservation!
+  updateReservation(id: Float!, data: UpdateReservationDto!): Reservation!
+  deleteReservation(id: Float!): Boolean!
+  createService(data: CreateServiceDto!): Service!
+  updateService(id: Float!, data: UpdateServiceDto!): Service!
+  deleteService(id: Float!): Boolean!
+}
+
+input CreateHabitationDto {
+  numero: Float!
+  tipo: String!
+  precio: Float!
+  disponible: Boolean!
+}
+
+input UpdateHabitationDto {
+  numero: Float
+  tipo: String
+  precio: Float
+  disponible: Boolean
+}
+
+input CreateReservationDto {
+  clientId: Float!
+  startDate: DateTime!
+  endDate: DateTime!
+  status: String!
+  habitationId: Float!
+  serviceId: Float
+}
+
+input UpdateReservationDto {
+  clientId: Int!
+  startDate: DateTime!
+  endDate: DateTime!
+  status: String!
+  habitationId: Int!
+  serviceId: Int
+}
+
+input CreateServiceDto {
+  nombre: String!
+  descripcion: String!
+  costoAdicional: Float!
+  disponible: Boolean!
+}
+
+input UpdateServiceDto {
+  nombre: String
+  descripcion: String
+  costoAdicional: Float
+  disponible: Boolean
+}
